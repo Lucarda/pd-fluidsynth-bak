@@ -51,8 +51,8 @@ This project code resides on: https://github.com/porres/pd-fluid~
 
 ### Credits :
 
-Thanks to the authors of fluidsynth* and to Larry Troxler, author of the older [iiwu~] external in which fluid~ was based on.
-* https://github.com/FluidSynth/fluidsynth/blob/master/AUTHORS
+Thanks to the authors of fluidsynth (1) and to Larry Troxler, author of the older [iiwu~] external in which fluid~ was based on.
+(1) https://github.com/FluidSynth/fluidsynth/blob/master/AUTHORS
 
 - Original version by Frank Barknecht [2003]
 - Ported from Flext/C++ to plain C/pdlibbuilder by Jonathan Wilkes for Purr Data [2016]
