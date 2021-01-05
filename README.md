@@ -36,6 +36,32 @@ Cross compiling is also possible with something like this
 
 <pre>make CC=arm-linux-gnueabihf-gcc target.arch=arm7l install objectsdir=../</pre>
 
+#### Windows compiling
+
+Download the 32bit and 64bit packages of **FluidSynth** from:
+https://github.com/FluidSynth/fluidsynth/releases/tag/v2.1.6
+and extract the pkgs accordingly to the `win32` or `win64` folders.
+
+Then you can do with MinGW: 
+
+`make install`
+
+or specify more options with:
+
+`make PDDIR=<path/to/pd directory> PDLIBDIR=<path/to/output> install`
+
+##### if you are Cross-compiling from Linux:
+
+Download and extract the above mentioned **FluidSynth** packages and do:
+
+for 64bit
+
+`make PLATFORM=x86_64-w64-mingw32 PDDIR=<path/to/win64-pd> PDLIBDIR=./out64 install`
+
+or for 32bit:
+
+`make PLATFORM=i686-w64-mingw32 PDDIR=<path/to/win32-pd> PDLIBDIR=./out32 install`
+
 * * *
 
 ### History:
