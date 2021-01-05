@@ -201,11 +201,11 @@ of Albert Gräf \, Frank Barknecht and others., f 48;
 #X restore 121 71 pd Gui_control;
 #X obj 85 241 dac~;
 #X obj 53 36 inlet~;
-#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider volume 17
-9 0 14 -228856 -1 -1 0 1;
+#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider muted 23
+9 0 14 -91674 -262144 -262144 6000 1;
 #N canvas 565 338 514 332 DSP 0;
 #X obj 100 100 tgl 16 0 \$0-dsp-toggle \$0-dsp-toggle-set empty 19
-8 0 12 -228856 -128992 -262144 0 1;
+8 0 12 -74965 -212593 -262144 1 1;
 #X obj 117 101 cnv 5 24 14 empty \$0-cnv_dsp dsp 2 6 0 12 -228856 -91542
 0;
 #X coords 0 -1 1 1 42 16 2 100 100;
@@ -213,8 +213,8 @@ of Albert Gräf \, Frank Barknecht and others., f 48;
 #N canvas 830 23 409 332 mute 0;
 #X obj 101 101 cnv 5 34 14 empty \$0-cnv_mute mute 4 6 0 12 -228856
 -91542 0;
-#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -228856
--128992 -262144 0 1;
+#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -74965
+-212593 -262144 1 1;
 #X obj 130 162 select 0 1;
 #N canvas 612 446 324 271 set_tgl_color 0;
 #X obj 47 30 inlet;
@@ -479,7 +479,7 @@ of Albert Gräf \, Frank Barknecht and others., f 48;
 #X connect 12 0 13 1;
 #X connect 13 0 9 0;
 #X coords 0 -1 1 1 94 40 2 250 60;
-#X restore 226 152 pd out;
+#X restore 245 153 pd out;
 #X text 75 289 control/cc/c <f \, f \, f> -;
 #X text 111 303 note/n <f \, f \, f> -;
 #X text 227 303 note <channel \, key# \, velocity>. In SMMF mode \,
@@ -507,30 +507,21 @@ is the same \, 'bend' is <value \, ch>, f 53;
 #X text 135 423 sysex <list> -;
 #X text 227 423 "smmf" mode only: sysex messages, f 53;
 #X text 183 204 help -;
-#N canvas 375 31 559 501 MIDI-Input 0;
+#N canvas 375 31 580 501 MIDI-Input 0;
 #X obj 262 81 notein;
-#X obj 250 105 pack 0 0 0;
-#X obj 273 177 pack 0 0 0;
 #X obj 288 154 ctlin;
-#X obj 290 231 bendin 0 1;
-#X obj 290 253 pack 0 0;
-#X floatatom 304 308 5 0 0 0 - - -;
+#X floatatom 304 308 0 1 9 0 - - -;
 #X msg 304 332 prog 1 \$1;
-#X floatatom 319 357 5 0 0 0 - - -;
+#X floatatom 319 357 5 1 4 0 - - -;
 #X msg 319 381 bank 1 \$1;
 #X obj 250 442 outlet;
 #X msg 250 127 note \$3 \$1 \$2;
 #X msg 273 198 control \$3 \$2 \$1;
 #X msg 290 278 bend \$2 \$1;
-#X text 339 126 channel \, key# \, velocity;
 #X text 33 22 These are the basic messages for setting the sounds of
 the fluidsynth soundfont synthesizer. The MIDI input from Pd needs
 to be configured in Preferences => MIDI., f 82;
-#X text 378 196 channel \, control# \, value;
-#X text 365 277 channel \, value;
-#X text 370 331 channel \, value;
-#X text 382 381 channel \, value;
-#X obj 60 155 tgl 17 0 empty empty empty 0 -6 0 8 -228856 -1 -1 0 1
+#X obj 60 155 tgl 17 0 empty empty empty 0 -6 0 8 -228856 -1 -1 1 1
 ;
 #X obj 60 266 makenote 127 100;
 #X msg 60 322 1 \$1 \$2;
@@ -541,33 +532,45 @@ to be configured in Preferences => MIDI., f 82;
 #X text 83 154 <= random notes;
 #X obj 60 290 pack f f;
 #X text 116 316 Note message as a list message, f 15;
-#X connect 0 0 1 0;
-#X connect 0 1 1 1;
-#X connect 0 2 1 2;
-#X connect 1 0 11 0;
-#X connect 2 0 12 0;
-#X connect 3 0 2 0;
-#X connect 3 1 2 1;
-#X connect 3 2 2 2;
+#X obj 290 231 bendin;
+#X obj 250 105 pack f f f;
+#X obj 273 177 pack f f f;
+#X obj 290 253 pack f f;
+#X text 325 403 (the loaded soundfonts loaded in this help file only
+have 1 bank \, so this does nothing here), f 32;
+#X text 333 308 change sound program;
+#X text 339 126 channel \, key \, velocity;
+#X text 378 197 channel \, control number \, value;
+#X text 370 331 channel \, program number;
+#X text 365 278 channel \, bend value;
+#X text 382 381 channel \, bank number;
+#X connect 0 0 22 0;
+#X connect 0 1 22 1;
+#X connect 0 2 22 2;
+#X connect 1 0 23 0;
+#X connect 1 1 23 1;
+#X connect 1 2 23 2;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
 #X connect 4 0 5 0;
-#X connect 4 1 5 1;
-#X connect 5 0 13 0;
-#X connect 6 0 7 0;
-#X connect 7 0 10 0;
-#X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 11 0 10 0;
-#X connect 12 0 10 0;
-#X connect 13 0 10 0;
-#X connect 20 0 25 0;
-#X connect 21 0 28 0;
-#X connect 21 1 28 1;
-#X connect 22 0 10 0;
-#X connect 24 0 21 0;
-#X connect 25 0 24 0;
-#X connect 25 0 26 0;
-#X connect 26 0 25 1;
-#X connect 28 0 22 0;
+#X connect 5 0 6 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 6 0;
+#X connect 11 0 16 0;
+#X connect 12 0 19 0;
+#X connect 12 1 19 1;
+#X connect 13 0 6 0;
+#X connect 15 0 12 0;
+#X connect 16 0 15 0;
+#X connect 16 0 17 0;
+#X connect 17 0 16 1;
+#X connect 19 0 13 0;
+#X connect 21 0 24 0;
+#X connect 21 1 24 1;
+#X connect 22 0 7 0;
+#X connect 23 0 8 0;
+#X connect 24 0 9 0;
 #X restore 226 78 pd MIDI-Input;
 #X text 123 328 list <f \, f \, f> -;
 #X text 93 246 bank <float \, float> -;
@@ -578,10 +581,10 @@ to be configured in Preferences => MIDI., f 82;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X coords 0 1 100 -1 552 28 1 0 0;
 #X restore 2 3 graph;
-#N canvas 1081 67 526 414 other-messages 0;
+#N canvas 1081 67 506 484 other-messages 0;
 #X msg 136 320 gen 1 \$2 \$1;
 #X symbolatom 211 287 20 0 0 0 - - -;
-#X obj 120 370 s \$0-fluid;
+#X obj 120 440 s \$0-fluid;
 #X obj 136 280 pack f 17;
 #X obj 136 234 nbx 3 13 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 11
 -228856 -1 -1 0 256;
@@ -620,6 +623,10 @@ also optionaly use the -smmf flag), f 43;
 #X msg 101 113 init TimGM6mb;
 #X text 214 320 channel \, generator number \, value;
 #X text 142 195 set generators (like: 17 is "pan");
+#X text 263 356 load a different soundfont;
+#X msg 155 357 load sf2/R-piano;
+#X text 168 385 If no extension is given \, ".sf2" is implied;
+#X text 167 403 This is the same for the argument;
 #X connect 0 0 2 0;
 #X connect 3 0 0 0;
 #X connect 4 0 3 0;
@@ -631,6 +638,7 @@ also optionaly use the -smmf flag), f 43;
 #X connect 14 0 13 0;
 #X connect 15 0 14 0;
 #X connect 19 0 2 0;
+#X connect 23 0 2 0;
 #X restore 443 154 pd other-messages;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X coords 0 1 100 -1 552 22 1 0 0;
@@ -660,7 +668,7 @@ below:;
 #X connect 6 0 7 0;
 #X connect 7 0 4 0;
 #X connect 8 0 7 0;
-#X restore 131 165 pd mts-tuning;
+#X restore 103 162 pd mts-tuning;
 #N canvas 1202 77 460 567 MIDI-input 0;
 #X obj 69 96 ctlin;
 #X obj 69 117 pack f f f;
@@ -744,7 +752,7 @@ messages still work the same., f 41;
 #X connect 30 1 27 0;
 #X connect 33 0 12 0;
 #X connect 33 1 12 1;
-#X restore 115 127 pd MIDI-input;
+#X restore 87 124 pd MIDI-input;
 #N canvas 471 400 453 297 out 0;
 #X obj 54 207 *~;
 #X obj 105 36 inlet~;
@@ -908,11 +916,11 @@ messages still work the same., f 41;
 #X restore 121 71 pd Gui_control;
 #X obj 85 241 dac~;
 #X obj 53 36 inlet~;
-#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider volume 17
-9 0 14 -228856 -1 -1 0 1;
+#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider muted 23
+9 0 14 -91674 -262144 -262144 0 1;
 #N canvas 565 338 514 332 DSP 0;
 #X obj 100 100 tgl 16 0 \$0-dsp-toggle \$0-dsp-toggle-set empty 19
-8 0 12 -228856 -128992 -262144 0 1;
+8 0 12 -74965 -212593 -262144 1 1;
 #X obj 117 101 cnv 5 24 14 empty \$0-cnv_dsp dsp 2 6 0 12 -228856 -91542
 0;
 #X coords 0 -1 1 1 42 16 2 100 100;
@@ -920,8 +928,8 @@ messages still work the same., f 41;
 #N canvas 830 23 409 332 mute 0;
 #X obj 101 101 cnv 5 34 14 empty \$0-cnv_mute mute 4 6 0 12 -228856
 -91542 0;
-#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -228856
--128992 -262144 0 1;
+#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -74965
+-212593 -262144 0 1;
 #X obj 130 162 select 0 1;
 #N canvas 612 446 324 271 set_tgl_color 0;
 #X obj 47 30 inlet;
@@ -1186,20 +1194,22 @@ messages still work the same., f 41;
 #X connect 12 0 13 1;
 #X connect 13 0 9 0;
 #X coords 0 -1 1 1 94 40 2 250 60;
-#X restore 130 250 pd out;
-#X obj 115 208 fluid~ -smmf TimGM6mb;
+#X restore 108 241 pd out;
 #X text 43 52 In this example we take a look on the messages specific
 to the SMMF (Simple MIDI Message Format) mode. For more details \,
 see: <https://bitbucket.org/agraef/pd-smmf>., f 55;
-#X text 205 126 <= open;
-#X text 220 165 <= open;
+#X text 177 123 <= open;
+#X text 192 162 <= open;
 #X text 43 13 By default \, [fluid~] runs in "legacy" mode \, which
 is 100% backwards compatible to the original object by Frank Barknecht
 (2003)., f 55;
-#X connect 0 0 3 0;
-#X connect 1 0 3 0;
-#X connect 3 0 2 0;
-#X connect 3 1 2 1;
+#X obj 87 205 fluid~ -smmf sf2/R-piano;
+#X text 243 205 <= ".sf2" extension, f 19;
+#X text 265 219 implied;
+#X connect 0 0 7 0;
+#X connect 1 0 7 0;
+#X connect 7 0 2 0;
+#X connect 7 1 2 1;
 #X restore 472 175 pd SMMF-mode;
 #X text 315 77 <= open;
 #X text 71 113 <= get more;
@@ -1208,7 +1218,6 @@ is 100% backwards compatible to the original object by Frank Barknecht
 #X obj 2 520 cnv 3 550 3 empty \$0-pddp.cnv.argument flags 8 12 0 13
 -228856 -1 0;
 #X text 158 526 -smmf;
-#X obj 226 127 fluid~ TimGM6mb;
 #X text 227 328 same as 'n' message (not affected in SMMF mode), f
 53;
 #X text 213 496 - soundfont file to load (default none);
@@ -1224,8 +1233,9 @@ compatible to the original version by Frank Barknecht (2003);
 #X text 111 232 init <flag \, arg> -;
 #X text 227 232 reinitializes object with flag/argument \, if any.
 , f 53;
+#X obj 226 128 fluid~ sf2/Famicom.sf2;
 #X connect 11 0 12 0;
-#X connect 33 0 51 0;
-#X connect 43 0 51 0;
-#X connect 51 0 13 0;
-#X connect 51 1 13 1;
+#X connect 33 0 62 0;
+#X connect 43 0 62 0;
+#X connect 62 0 13 0;
+#X connect 62 1 13 1;
