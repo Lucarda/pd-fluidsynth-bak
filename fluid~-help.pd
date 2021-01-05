@@ -201,8 +201,8 @@ of Albert Gräf \, Frank Barknecht and others., f 48;
 #X restore 121 71 pd Gui_control;
 #X obj 85 241 dac~;
 #X obj 53 36 inlet~;
-#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider muted 23
-9 0 14 -91674 -262144 -262144 6000 1;
+#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider volume 17
+9 0 14 -228856 -1 -1 8800 1;
 #N canvas 565 338 514 332 DSP 0;
 #X obj 100 100 tgl 16 0 \$0-dsp-toggle \$0-dsp-toggle-set empty 19
 8 0 12 -74965 -212593 -262144 1 1;
@@ -213,8 +213,8 @@ of Albert Gräf \, Frank Barknecht and others., f 48;
 #N canvas 830 23 409 332 mute 0;
 #X obj 101 101 cnv 5 34 14 empty \$0-cnv_mute mute 4 6 0 12 -228856
 -91542 0;
-#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -74965
--212593 -262144 1 1;
+#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -228856
+-128992 -262144 0 1;
 #X obj 130 162 select 0 1;
 #N canvas 612 446 324 271 set_tgl_color 0;
 #X obj 47 30 inlet;
@@ -507,17 +507,16 @@ is the same \, 'bend' is <value \, ch>, f 53;
 #X text 135 423 sysex <list> -;
 #X text 227 423 "smmf" mode only: sysex messages, f 53;
 #X text 183 204 help -;
-#N canvas 375 31 580 501 MIDI-Input 0;
+#N canvas 375 31 589 569 MIDI-Input 0;
 #X obj 262 81 notein;
 #X obj 288 154 ctlin;
-#X floatatom 304 308 0 1 9 0 - - -;
-#X msg 304 332 prog 1 \$1;
-#X floatatom 319 357 5 1 4 0 - - -;
-#X msg 319 381 bank 1 \$1;
-#X obj 250 442 outlet;
+#X floatatom 311 377 0 1 9 0 - - -;
+#X floatatom 319 432 5 1 4 0 - - -;
+#X msg 319 456 bank 1 \$1;
+#X obj 250 517 outlet;
 #X msg 250 127 note \$3 \$1 \$2;
 #X msg 273 198 control \$3 \$2 \$1;
-#X msg 290 278 bend \$2 \$1;
+#X msg 284 276 bend \$2 \$1;
 #X text 33 22 These are the basic messages for setting the sounds of
 the fluidsynth soundfont synthesizer. The MIDI input from Pd needs
 to be configured in Preferences => MIDI., f 82;
@@ -532,45 +531,54 @@ to be configured in Preferences => MIDI., f 82;
 #X text 83 154 <= random notes;
 #X obj 60 290 pack f f;
 #X text 116 316 Note message as a list message, f 15;
-#X obj 290 231 bendin;
+#X obj 284 229 bendin;
 #X obj 250 105 pack f f f;
 #X obj 273 177 pack f f f;
-#X obj 290 253 pack f f;
-#X text 325 403 (the loaded soundfonts loaded in this help file only
+#X obj 284 251 pack f f;
+#X text 325 478 (the loaded soundfonts loaded in this help file only
 have 1 bank \, so this does nothing here), f 32;
-#X text 333 308 change sound program;
 #X text 339 126 channel \, key \, velocity;
 #X text 378 197 channel \, control number \, value;
-#X text 370 331 channel \, program number;
-#X text 365 278 channel \, bend value;
-#X text 382 381 channel \, bank number;
-#X connect 0 0 22 0;
-#X connect 0 1 22 1;
-#X connect 0 2 22 2;
-#X connect 1 0 23 0;
-#X connect 1 1 23 1;
-#X connect 1 2 23 2;
-#X connect 2 0 3 0;
-#X connect 3 0 6 0;
+#X text 359 276 channel \, bend value;
+#X text 382 456 channel \, bank number;
+#X msg 311 401 p 1 \$1;
+#X obj 293 325 pack f f;
+#X obj 293 303 pgmin;
+#X msg 293 350 prog \$2 \$1;
+#X text 363 350 channel \, bprogram number;
+#X text 340 377 <= change sound program directly;
+#X text 357 402 "p" is short for "prog";
+#X connect 0 0 21 0;
+#X connect 0 1 21 1;
+#X connect 0 2 21 2;
+#X connect 1 0 22 0;
+#X connect 1 1 22 1;
+#X connect 1 2 22 2;
+#X connect 2 0 29 0;
+#X connect 3 0 4 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 7 0 6 0;
-#X connect 8 0 6 0;
-#X connect 9 0 6 0;
-#X connect 11 0 16 0;
-#X connect 12 0 19 0;
-#X connect 12 1 19 1;
-#X connect 13 0 6 0;
-#X connect 15 0 12 0;
-#X connect 16 0 15 0;
-#X connect 16 0 17 0;
-#X connect 17 0 16 1;
-#X connect 19 0 13 0;
-#X connect 21 0 24 0;
-#X connect 21 1 24 1;
+#X connect 6 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 5 0;
+#X connect 10 0 15 0;
+#X connect 11 0 18 0;
+#X connect 11 1 18 1;
+#X connect 12 0 5 0;
+#X connect 14 0 11 0;
+#X connect 15 0 14 0;
+#X connect 15 0 16 0;
+#X connect 16 0 15 1;
+#X connect 18 0 12 0;
+#X connect 20 0 23 0;
+#X connect 20 1 23 1;
+#X connect 21 0 6 0;
 #X connect 22 0 7 0;
 #X connect 23 0 8 0;
-#X connect 24 0 9 0;
+#X connect 29 0 5 0;
+#X connect 30 0 32 0;
+#X connect 31 0 30 0;
+#X connect 31 1 30 1;
+#X connect 32 0 5 0;
 #X restore 226 78 pd MIDI-Input;
 #X text 123 328 list <f \, f \, f> -;
 #X text 93 246 bank <float \, float> -;
@@ -581,16 +589,16 @@ have 1 bank \, so this does nothing here), f 32;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X coords 0 1 100 -1 552 28 1 0 0;
 #X restore 2 3 graph;
-#N canvas 1081 67 506 484 other-messages 0;
-#X msg 136 320 gen 1 \$2 \$1;
-#X symbolatom 211 287 20 0 0 0 - - -;
-#X obj 120 440 s \$0-fluid;
-#X obj 136 280 pack f 17;
-#X obj 136 234 nbx 3 13 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 11
--228856 -1 -1 0 256;
-#X obj 187 234 nbx 3 13 0 60 0 0 empty empty empty 0 -8 0 11 -228856
--1 -1 0 256;
-#X obj 243 221 text define -k \$0-gen;
+#N canvas 1081 67 556 410 other-messages 0;
+#X msg 189 317 gen 1 \$2 \$1;
+#X symbolatom 264 284 20 0 0 0 - - -;
+#X obj 159 359 s \$0-fluid;
+#X obj 189 277 pack f 17;
+#X obj 189 231 nbx 3 13 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 11
+-228856 -1 -1 100 256;
+#X obj 240 231 nbx 3 13 0 60 0 0 empty empty empty 0 -8 0 11 -228856
+-1 -1 17 256;
+#X obj 296 218 text define -k \$0-gen;
 #A set startaddrofs \; endaddrofs \; startloopaddrofs \; endloopaddrofs
 \; startaddrcoarseofs \; modlfotopitch \; viblfotopitch \; modenvtopitch
 \; filterfc \; filterq \; modlfotofilterfc \; modenvtofilterfc \; endaddrcoarseofs
@@ -605,28 +613,27 @@ viblfofreq \; modenvdelay \; modenvattack \; modenvhold \; modenvdecay
 coarsetune \; finetune \; sampleid \; samplemode \; reserved3 \; scaletune
 \; exclusiveclass \; overriderootkey \; pitch \; last \;;
 #X f 11;
-#X obj 211 263 text get \$0-gen;
-#X text 137 215 value;
-#X text 186 215 gen#;
-#X text 322 215 from the gen.h fluidsynth header file (names converted
+#X obj 264 260 text get \$0-gen;
+#X text 190 212 value;
+#X text 239 212 gen#;
+#X text 375 212 from the gen.h fluidsynth header file (names converted
 to lowercase), f 25;
-#X msg 120 153 help;
-#X text 313 261 <= get gen name, f 16;
-#X msg 64 73 load \$1;
-#X obj 64 47 openpanel;
-#X obj 64 17 bng 18 250 50 0 empty empty empty 17 7 0 10 -228856 -1
+#X msg 173 150 help;
+#X text 366 258 <= get gen name, f 16;
+#X msg 70 89 load \$1;
+#X obj 70 63 openpanel;
+#X obj 70 33 bng 18 250 50 0 empty empty empty 17 7 0 10 -228856 -1
 -1;
-#X text 184 110 <= reinitializes objects with new arguments (you can
+#X text 237 107 <= reinitializes objects with new arguments (you can
 also optionaly use the -smmf flag), f 43;
-#X text 153 153 <= print help information;
-#X text 114 73 <= load new file;
-#X msg 101 113 init TimGM6mb;
-#X text 214 320 channel \, generator number \, value;
-#X text 142 195 set generators (like: 17 is "pan");
-#X text 263 356 load a different soundfont;
-#X msg 155 357 load sf2/R-piano;
-#X text 168 385 If no extension is given \, ".sf2" is implied;
-#X text 167 403 This is the same for the argument;
+#X text 206 150 <= print help information;
+#X msg 154 110 init TimGM6mb;
+#X text 267 317 channel \, generator number \, value;
+#X text 195 192 set generators (like: 17 is "pan");
+#X text 96 35 load a different soundfont;
+#X msg 138 70 load sf2/R-piano;
+#X text 248 60 If no extension is given \, ".sf2" is implied. This
+is the same for the argument, f 26;
 #X connect 0 0 2 0;
 #X connect 3 0 0 0;
 #X connect 4 0 3 0;
@@ -637,8 +644,8 @@ also optionaly use the -smmf flag), f 43;
 #X connect 13 0 2 0;
 #X connect 14 0 13 0;
 #X connect 15 0 14 0;
-#X connect 19 0 2 0;
-#X connect 23 0 2 0;
+#X connect 18 0 2 0;
+#X connect 22 0 2 0;
 #X restore 443 154 pd other-messages;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X coords 0 1 100 -1 552 22 1 0 0;
@@ -916,8 +923,8 @@ messages still work the same., f 41;
 #X restore 121 71 pd Gui_control;
 #X obj 85 241 dac~;
 #X obj 53 36 inlet~;
-#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider muted 23
-9 0 14 -91674 -262144 -262144 0 1;
+#X obj 253 80 hsl 89 20 0 1 0 0 \$0-slider \$0-set-slider volume 17
+9 0 14 -228856 -1 -1 0 1;
 #N canvas 565 338 514 332 DSP 0;
 #X obj 100 100 tgl 16 0 \$0-dsp-toggle \$0-dsp-toggle-set empty 19
 8 0 12 -74965 -212593 -262144 1 1;
@@ -928,8 +935,8 @@ messages still work the same., f 41;
 #N canvas 830 23 409 332 mute 0;
 #X obj 101 101 cnv 5 34 14 empty \$0-cnv_mute mute 4 6 0 12 -228856
 -91542 0;
-#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -74965
--212593 -262144 0 1;
+#X obj 64 133 tgl 16 0 \$0-mute \$0-mute-set empty 19 7 0 12 -228856
+-128992 -262144 0 1;
 #X obj 130 162 select 0 1;
 #N canvas 612 446 324 271 set_tgl_color 0;
 #X obj 47 30 inlet;
