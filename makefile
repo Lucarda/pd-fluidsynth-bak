@@ -42,7 +42,8 @@ endef
 
 ldlibs = -lfluidsynth
 
-datafiles = fluid~-help.pd LICENSE.txt README.md TimGM6mb.sf2 libfluidsynth.2.3.5.dylib
+datafiles = fluid~-help.pd LICENSE.txt README.md libfluidsynth.2.3.5.dylib
+datadirs = sf2
 
 export LD_RUN_PATH="."
 
