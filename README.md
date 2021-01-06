@@ -6,7 +6,11 @@
 
 ### About:
 
-[fluid~] is an external for Pure Data that loads fluidsynth for a fullblown orchestra. **FluidSynth** is a Real-Time SoundFont Software Synthesizer. See: https://www.fluidsynth.org/
+[fluid~] is an external for Pure Data that loads fluidsynth for a fullblown orchestra.
+
+**FluidSynth** is a Real-Time SoundFont Software Synthesizer (see https://www.fluidsynth.org and https://github.com/FluidSynth/fluidsynth).
+
+This distribution is using fluidsynth 2.1.6
 
 --------------------------------------------------------------------------
 
@@ -18,7 +22,7 @@ Distributed under the GPLv2+, please check the LICENSE file for details.
 
 #### Building [fluid~] for Pd Vanilla:
 
-First you need to install  **FluidSynth** (https://www.fluidsynth.org/) in your system. Then just run the makefile.
+First you need to install  **FluidSynth** (https://www.fluidsynth.org/) in your system. Once you do that you can run the makefile.
 
 This project relies on the build system called "pd-lib-builder" by Katja Vetter (see: <https://github.com/pure-data/pd-lib-builder>). PdLibBuilder tries to find the Pd source directory at several common locations, but when this fails, you have to specify the path yourself using the pdincludepath variable. Example:
 
@@ -36,7 +40,19 @@ Cross compiling is also possible with something like this
 
 <pre>make CC=arm-linux-gnueabihf-gcc target.arch=arm7l install objectsdir=../</pre>
 
-#### Windows compiling
+
+
+#### Further instructions:
+
+#### - macOS
+
+Download/install **FluidSynth** via homebrew (https://brew.sh/).
+
+- "brew install fluidsynth"
+
+
+
+#### - Windows
 
 Download the 32bit and 64bit packages of **FluidSynth** from:
 https://github.com/FluidSynth/fluidsynth/releases/tag/v2.1.6
