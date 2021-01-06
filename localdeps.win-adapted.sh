@@ -15,6 +15,11 @@
 # renaming.
 # this is somewhat brittle and likely to break!
 
+##########################################
+#
+# adapted for the needs of pd-fluidsynth.
+# does not change file extension.
+
 error() {
    echo "$@" 1>&2
 }
