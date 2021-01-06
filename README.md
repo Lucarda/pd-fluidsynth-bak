@@ -60,6 +60,12 @@ Download the 32bit and 64bit **msys2** packages of **FluidSynth**:
 
 `pacman -S mingw64/mingw-w64-x86_64-fluidsynth`
 
+and install the **ntldd** package:
+
+`pacman -S mingw32/mingw-w64-i686-ntldd-git`
+
+`pacman -S mingw64/mingw-w64-x86_64-ntldd-git` 
+
 Then you can do with MinGW: 
 
 `make install`
