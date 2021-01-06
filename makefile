@@ -22,4 +22,4 @@ define forWindows
 post:
 $(shell ./localdeps.win-adapted.sh $(installpath)/fluid~.dll)
 
-endif
+endef
