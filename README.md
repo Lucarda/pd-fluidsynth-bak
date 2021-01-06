@@ -54,31 +54,23 @@ Download/install **FluidSynth** via homebrew (https://brew.sh/).
 
 #### - Windows
 
-Download the 32bit and 64bit packages of **FluidSynth** from:
-https://github.com/FluidSynth/fluidsynth/releases/tag/v2.1.6
-and extract the pkgs accordingly to the `win32` or `win64` folders.
+Download the 32bit and 64bit **msys2** packages of **FluidSynth**:
+
+`pacman -S mingw32/mingw-w64-i686-fluidsynth`
+
+`pacman -S mingw64/mingw-w64-x86_64-fluidsynth`
 
 Then you can do with MinGW: 
 
 `make install`
 
-or specify more options with:
+repeat `make install` again so that all **dll** dependencies are installed to the install dir.
+
+You can also specify more options with:
 
 `make PDDIR=<path/to/pd directory> PDLIBDIR=<path/to/output> install`
 
-##### if you are Cross-compiling from Linux:
-
-Download and extract the above mentioned **FluidSynth** packages and do:
-
-for 64bit
-
-`make PLATFORM=x86_64-w64-mingw32 PDDIR=<path/to/win64-pd> PDLIBDIR=./out64 install`
-
-or for 32bit:
-
-`make PLATFORM=i686-w64-mingw32 PDDIR=<path/to/win32-pd> PDLIBDIR=./out32 install`
-
-* * *
+(also repeat the command to install dependencies)
 
 ### History:
 
