@@ -1,6 +1,6 @@
 * * *
 
-[fluid~] - soundfont player for Pure Data based on fluidsynth.
+[fluid~] - soundfont player for Pure Data that uses fluidsynth.
 
 * * *
 
@@ -22,7 +22,7 @@ Distributed under the GPLv2+, please check the LICENSE file for details.
 
 #### Building [fluid~] for Pd Vanilla:
 
-First you need to install  **FluidSynth** (https://www.fluidsynth.org/) in your system. Once you do that you can run the makefile.
+First you need to install  **FluidSynth** (https://www.fluidsynth.org/) in your system. You can run the makefile after that.
 
 This project relies on the build system called "pd-lib-builder" by Katja Vetter (see: <https://github.com/pure-data/pd-lib-builder>). PdLibBuilder tries to find the Pd source directory at several common locations, but when this fails, you have to specify the path yourself using the pdincludepath variable. Example:
 
@@ -46,9 +46,11 @@ Cross compiling is also possible with something like this
 
 #### - macOS
 
-Download/install **FluidSynth** via homebrew (https://brew.sh/).
+Download and install **FluidSynth** via homebrew (https://brew.sh/).
 
 - "brew install fluidsynth"
+
+After running the makefile, run the "localdeps.macos.sh" script with "fluid~.extension" as the argument. This magical script that copies the dynamic libraries into the external folder and links them correctly.
 
 
 
@@ -86,14 +88,14 @@ The original code and version  of fluid~ is available in https://sourceforge.net
 
 The Purr Data port to Pd's API is found at: https://git.purrdata.net/jwilkes/purr-data/-/tree/master/externals/fluid~
 
-This project code resides on: https://github.com/porres/pd-fluid~
+This project's code resides at: https://github.com/porres/pd-fluid~
 
 --------------------------------------------------------------------------
 
 
 ### Credits :
 
-Thanks to the authors of fluidsynth (https://github.com/FluidSynth/fluidsynth/blob/master/AUTHORS) and to Larry Troxler, author of the older [iiwu~] external in which fluid~ was based on.
+Thanks to the authors of fluidsynth (https://github.com/FluidSynth/fluidsynth/blob/master/AUTHORS) and to Larry Troxler, author of the older [iiwu~] external in which fluid~ was based on. thanks to IOhannes for the magical script that copies the dynamic libraries into the external folder and links them correctly. Thanks t Lucas Cordiviola for helping on how to build for windows.
 
 - Original version by Frank Barknecht [2003]
 - Ported from Flext/C++ to plain C/pdlibbuilder by Jonathan Wilkes for Purr Data [2016]
