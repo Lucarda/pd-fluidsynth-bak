@@ -1,6 +1,6 @@
 * * *
 
-[fluid~] - soundfont player for Pure Data that uses fluidsynth.
+**[fluid~] - soundfont player for Pure Data that uses fluidsynth.**
 
 * * *
 
@@ -12,11 +12,15 @@
 
 This distribution is using fluidsynth 2.1.6
 
+
+
 --------------------------------------------------------------------------
 
 ### Licence:
 
 Distributed under the GPLv2+, please check the LICENSE file for details.
+
+
 
 --------------------------------------------------------------------------
 
@@ -93,6 +97,10 @@ cd <to/your/lib/installation/dir>
 ./windep64.sh
 
 `````
+
+
+--------------------------------------------------------------------------
+
 ### History:
 
 The original code and version  of fluid~ is available in https://sourceforge.net/p/pure-data/svn/HEAD/tree/trunk/externals/footils/fluid/
@@ -100,6 +108,8 @@ The original code and version  of fluid~ is available in https://sourceforge.net
 The Purr Data port to Pd's API is found at: https://git.purrdata.net/jwilkes/purr-data/-/tree/master/externals/fluid~
 
 This project's code resides at: https://github.com/porres/pd-fluid~
+
+
 
 --------------------------------------------------------------------------
 
@@ -109,9 +119,14 @@ This project's code resides at: https://github.com/porres/pd-fluid~
 Thanks to the authors of fluidsynth (https://github.com/FluidSynth/fluidsynth/blob/master/AUTHORS) and to Larry Troxler, author of the older [iiwu~] external in which fluid~ was based on. thanks to IOhannes for the magical script that copies the dynamic libraries into the external folder and links them correctly. Thanks t Lucas Cordiviola for helping on how to build for windows.
 
 - Original version by Frank Barknecht [2003]
+
 - Ported from Flext/C++ to plain C/pdlibbuilder by Jonathan Wilkes for Purr Data [2016]
+
 - SMMF mode and various other little improvements by Albert Gräf [2020]
+
 - Revised by Alexandre Torres Porres and ported to distribute for Pd Vanilla [2021]
+
+  
 
 --------------------------------------------------------------------------
 
