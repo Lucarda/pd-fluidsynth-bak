@@ -14,7 +14,26 @@ endif
 
 endef
 
-datafiles = fluid~-help.pd LICENSE.txt README.md localdeps.macos.sh
+define forLinux
+
+ifeq ($(firstword $(subst -, ,$(shell $(CC) -dumpmachine))), i686)
+	datafiles += linuxdep32.sh 
+	else
+	datafiles += linuxdep64.sh 
+endif
+
+endef
+
+define forDarwin
+
+	datafiles += localdeps.macos.sh 
+
+endef
+
+
+
+
+datafiles = fluid~-help.pd LICENSE.txt README.md 
 datadirs = sf2
 
 include pd-lib-builder/Makefile.pdlibbuilder
