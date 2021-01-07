@@ -98,6 +98,39 @@ cd <to/your/lib/installation/dir>
 
 `````
 
+#### - Linux
+
+first build the latest **fluidsynth** (at the time of writing is v 2.1.6)
+
+Download sources from https://github.com/FluidSynth/fluidsynth/releases 
+
+and get the following dependencies (shown for Debian)
+
+`sudo apt install cmake libglib2.0-dev pkgconf`
+
+then `cd` to your fluidsynth sources dir an do:
+
+`````
+mkdir build
+cd build
+cmake ..
+sudo make install
+`````
+
+then `cd` to the sources of this repo and do
+
+`make install`
+
+after that run the linuxdepXX.sh script that matches the architecture of your build. This script copies fluidsynth dependencies to your fluid~ external folder. Example for 64bit:
+
+`````
+cd <to/your/fluid~/installation/dir>
+chmod 775 linuxdep64.sh
+./linuxdep64.sh
+`````
+
+Now the fluidsynth dependencies are copied to your fluid~ external folder.
+
 
 --------------------------------------------------------------------------
 
