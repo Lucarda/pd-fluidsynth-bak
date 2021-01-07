@@ -56,32 +56,43 @@ After running the makefile, run the "localdeps.macos.sh" script with "fluid~.ext
 
 #### - Windows
 
-Download the 32bit and 64bit packages of **FluidSynth** from:
-https://github.com/FluidSynth/fluidsynth/releases/tag/v2.1.6
-and extract the pkgs accordingly to the `win32` or `win64` folders.
+Download the 32bit and 64bit **msys2** packages of **FluidSynth**:
+
+`pacman -S mingw32/mingw-w64-i686-fluidsynth`
+
+`pacman -S mingw64/mingw-w64-x86_64-fluidsynth`
+
+and install the **ntldd** package:
+
+`pacman -S mingw32/mingw-w64-i686-ntldd-git`
+
+`pacman -S mingw64/mingw-w64-x86_64-ntldd-git` 
 
 Then you can do with MinGW: 
 
 `make install`
 
-or specify more options with:
+or you can also specify more options with:
 
 `make PDDIR=<path/to/pd directory> PDLIBDIR=<path/to/output> install`
 
-##### if you are Cross-compiling from Linux:
+then on the MinGW shell `cd` to your lib installation dir and run the dependencies script:
 
-Download and extract the above mentioned **FluidSynth** packages and do:
+for 32bit
+
+`````
+cd <to/your/lib/installation/dir>
+./windep32.sh
+
+`````
 
 for 64bit
 
-`make PLATFORM=x86_64-w64-mingw32 PDDIR=<path/to/win64-pd> PDLIBDIR=./out64 install`
+`````
+cd <to/your/lib/installation/dir>
+./windep64.sh
 
-or for 32bit:
-
-`make PLATFORM=i686-w64-mingw32 PDDIR=<path/to/win32-pd> PDLIBDIR=./out32 install`
-
-* * *
-
+`````
 ### History:
 
 The original code and version  of fluid~ is available in https://sourceforge.net/p/pure-data/svn/HEAD/tree/trunk/externals/footils/fluid/
