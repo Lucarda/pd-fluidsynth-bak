@@ -19,5 +19,4 @@ datafiles = fluid~-help.pd LICENSE.txt README.md
 datadirs = sf2
 
 
-
 include pd-lib-builder/Makefile.pdlibbuilder
