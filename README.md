@@ -70,14 +70,27 @@ Then you can do with MinGW:
 
 `make install`
 
-repeat `make install` again so that all **dll** dependencies are installed to the install dir.
-
-You can also specify more options with:
+or you can also specify more options with:
 
 `make PDDIR=<path/to/pd directory> PDLIBDIR=<path/to/output> install`
 
-(also repeat the command to install dependencies)
+then on the MinGW shell `cd` to your lib installation dir and run the dependencies script:
 
+for 32bit
+
+`````
+cd <to/your/lib/installation/dir>
+./windep32.sh
+
+`````
+
+for 64bit
+
+`````
+cd <to/your/lib/installation/dir>
+./windep64.sh
+
+`````
 ### History:
 
 The original code and version  of fluid~ is available in https://sourceforge.net/p/pure-data/svn/HEAD/tree/trunk/externals/footils/fluid/
